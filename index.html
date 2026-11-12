@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doce Estrela: confeitaria natalina com panetones, biscoitos, bolos, cestas e chocolates.">
+  <title>Doce Estrela | Confeitaria Natalina</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body>
+  <!-- Neve caindo (flocos criados pelo JavaScript) -->
+  <div id="neve" aria-hidden="true"></div>
+
+  <header class="cabecalho">
+    <div class="luzes" aria-hidden="true"></div>
+    <div class="cabecalho-linha">
+      <a class="marca" href="index.html">
+        <img src="img/logo.svg" alt="Logotipo da Doce Estrela" width="44" height="44">
+        <span>Doce Estrela</span>
+      </a>
+
+      <div class="acoes">
+        <button class="btn-icone" id="btn-musica" aria-label="Tocar música de Natal" aria-pressed="false">🎵 <span class="texto-botao">Tocar música</span></button>
+        <button class="btn-icone" id="btn-tema" aria-label="Ativar modo Noite de Natal">🌙</button>
+        <button class="btn-icone" id="btn-carrinho" aria-label="Abrir carrinho de compras">🛒 <span id="qtd-carrinho">0</span></button>
+        <button class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html" class="ativo" aria-current="page">Home</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html">Galeria e Ofertas</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Banner com parallax: cada camada tem uma data-velocidade diferente -->
+    <section class="banner" aria-labelledby="titulo-home">
+      <img class="camada camada-ceu" data-velocidade="0.1" src="img/banners/ceu.svg" alt="">
+      <img class="camada camada-montanhas" data-velocidade="0.2" src="img/banners/montanhas.svg" alt="Montanhas nevadas">
+      <img class="camada camada-pinheiros" data-velocidade="0.4" src="img/banners/pinheiros.svg" alt="Pinheiros enfeitados">
+      <div class="banner-conteudo">
+        <span class="contagem-mini" data-contagem="texto">Faltam poucos dias para o Natal!</span>
+        <h1 id="titulo-home">Doce Estrela</h1>
+        <p class="slogan">O sabor do Natal na sua mesa. Panetones, biscoitos, bolos e cestas feitos com carinho e muita canela.</p>
+        <div class="banner-botoes">
+          <a class="botao pulsar" href="produtos.html">🎁 Ver produtos</a>
+          <a class="botao botao-contorno botao-claro" href="galeria.html">Ofertas de Natal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slideshow de promoções -->
+    <section class="secao container revelar" aria-label="Promoções e destaques">
+      <div class="slideshow">
+        <div class="slide">
+          <img src="img/banners/slide1.svg" alt="Casinha com telhado nevado e luzes de Natal" width="1200" height="700">
+          <div class="slide-texto"><h2>Ceia completa em família</h2><p>Cestas e kits com tudo para a noite de Natal.</p><a class="botao" href="produtos.html?categoria=Cestas%20e%20Kits">Ver cestas</a></div>
+        </div>
+        <div class="slide">
+          <img src="img/banners/slide2.svg" alt="Pinheiro de Natal enfeitado com bolas e estrela" width="1200" height="700">
+          <div class="slide-texto"><h2>20% de desconto em ofertas</h2><p>Seis produtos especiais com preço de Natal.</p><a class="botao" href="galeria.html">Ver ofertas</a></div>
+        </div>
+        <div class="slide">
+          <img src="img/banners/slide3.svg" alt="Trenó do Papai Noel voando sobre a neve" width="1200" height="700">
+          <div class="slide-texto"><h2>Entrega rápida do Papai Noel</h2><p>Encomende hoje e receba antes da ceia.</p><a class="botao" href="contato.html">Fazer encomenda</a></div>
+        </div>
+        <button class="slide-botao" id="anterior" aria-label="Slide anterior">‹</button>
+        <button class="slide-botao" id="proximo" aria-label="Próximo slide">›</button>
+        <div class="indicadores" id="indicadores"></div>
+      </div>
+    </section>
+
+    <!-- Produtos em destaque (cards gerados pelo JavaScript) -->
+    <section class="secao container" aria-labelledby="titulo-destaques">
+      <div class="titulo-secao revelar">
+        <h2 id="titulo-destaques">⭐ Destaques da casa</h2>
+        <p>Os favoritos dos nossos clientes neste Natal.</p>
+      </div>
+      <div class="grade-produtos" id="lista-destaques"></div>
+      <p class="centro"><a class="botao botao-verde" href="produtos.html">Ver todos os 50 produtos</a></p>
+    </section>
+
+    <!-- Faixa com parallax feito em CSS -->
+    <section class="faixa-parallax" aria-label="Mensagem de Natal">
+      <blockquote>“Natal é tempo de partilhar: um pedaço de panetone aquece qualquer coração.”
+        <cite>— Equipe Doce Estrela</cite>
+      </blockquote>
+    </section>
+
+    <!-- Categorias -->
+    <section class="secao container" aria-labelledby="titulo-categorias">
+      <div class="titulo-secao revelar">
+        <h2 id="titulo-categorias">Escolha por categoria</h2>
+      </div>
+      <nav class="categorias revelar" aria-label="Categorias de produtos">
+        <a href="produtos.html?categoria=Panetones%20e%20Chocotones">🍞 Panetones e Chocotones</a>
+        <a href="produtos.html?categoria=Biscoitos">🍪 Biscoitos</a>
+        <a href="produtos.html?categoria=Bolos%20e%20Tortas">🎂 Bolos e Tortas</a>
+        <a href="produtos.html?categoria=Cestas%20e%20Kits">🧺 Cestas e Kits</a>
+        <a href="produtos.html?categoria=Bebidas%20e%20Chocolates">🍫 Bebidas e Chocolates</a>
+      </nav>
+    </section>
+
+    <!-- Chamadas para as outras páginas -->
+    <section class="secao container" aria-labelledby="titulo-chamadas">
+      <div class="titulo-secao revelar"><h2 id="titulo-chamadas">Explore a Doce Estrela</h2></div>
+      <div class="grade-chamadas">
+        <a class="chamada revelar" href="sobre.html"><span class="icone">🏠</span><h3>Nossa história</h3><p>Conheça a confeitaria e a equipe por trás dos doces.</p></a>
+        <a class="chamada revelar" href="galeria.html"><span class="icone">🖼️</span><h3>Galeria e ofertas</h3><p>Fotos natalinas e descontos por tempo limitado.</p></a>
+        <a class="chamada revelar" href="contato.html"><span class="icone">💌</span><h3>Fale conosco</h3><p>Encomendas, dúvidas e sugestões: escreva para nós.</p></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape-colunas">
+        <div>
+          <h3>Doce Estrela</h3>
+          <p>O sabor do Natal na sua mesa.</p>
+        </div>
+        <div>
+          <h3>Fale com a gente</h3>
+          <p>Rua das Estrelas, 25 — Vila Natal (endereço fictício)</p>
+          <p>(11) 4002-2512 · contato@doceestrela.example</p>
+        </div>
+        <div>
+          <h3>Navegue</h3>
+          <p><a href="produtos.html">Produtos</a> · <a href="galeria.html">Ofertas</a> · <a href="contato.html">Contato</a></p>
+        </div>
+      </div>
+      <p>&copy; 2026 Doce Estrela — loja fictícia criada para a AV2 de Desenvolvimento Web.</p>
+  </footer>
+
+  <!-- Carrinho de compras (painel lateral) -->
+  <div class="fundo-escuro" id="fundo" hidden></div>
+  <aside class="painel-carrinho" id="painel-carrinho" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="painel-topo">
+      <h2>🛒 Seu carrinho</h2>
+      <button id="fechar-carrinho" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <p class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio.<br>Escolha uns doces de Natal! 🎄</p>
+    <ul id="itens-carrinho"></ul>
+    <div class="painel-rodape">
+      <p><span>Total:</span> <strong id="total-carrinho">R$ 0,00</strong></p>
+      <button class="botao" id="finalizar-compra">Finalizar compra</button>
+      <button class="botao botao-contorno" id="limpar-carrinho">Esvaziar carrinho</button>
+    </div>
+  </aside>
+
+  <!-- Modal de detalhes do produto (preenchido pelo JavaScript) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-caixa">
+      <button class="modal-fechar" id="modal-fechar" aria-label="Fechar detalhes">✕</button>
+      <img id="modal-imagem" src="img/logo.svg" alt="" width="520" height="260">
+      <div class="modal-corpo">
+        <span class="etiqueta etiqueta-modal" id="modal-categoria"></span>
+        <h2 id="modal-titulo"></h2>
+        <p id="modal-descricao"></p>
+        <strong class="preco" id="modal-preco"></strong>
+        <button class="botao pulsar" id="modal-comprar" data-id="1">🎁 Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+  <button id="topo" aria-label="Voltar ao topo">↑</button>
+
+  <!-- A ordem importa: produtos.js ANTES do script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doce Estrela: confeitaria natalina com panetones, biscoitos, bolos, cestas e chocolates.">
+  <title>Doce Estrela | Galeria e Ofertas</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body>
+  <!-- Neve caindo (flocos criados pelo JavaScript) -->
+  <div id="neve" aria-hidden="true"></div>
+
+  <header class="cabecalho">
+    <div class="luzes" aria-hidden="true"></div>
+    <div class="cabecalho-linha">
+      <a class="marca" href="index.html">
+        <img src="img/logo.svg" alt="Logotipo da Doce Estrela" width="44" height="44">
+        <span>Doce Estrela</span>
+      </a>
+
+      <div class="acoes">
+        <button class="btn-icone" id="btn-musica" aria-label="Tocar música de Natal" aria-pressed="false">🎵 <span class="texto-botao">Tocar música</span></button>
+        <button class="btn-icone" id="btn-tema" aria-label="Ativar modo Noite de Natal">🌙</button>
+        <button class="btn-icone" id="btn-carrinho" aria-label="Abrir carrinho de compras">🛒 <span id="qtd-carrinho">0</span></button>
+        <button class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html">Home</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html" class="ativo" aria-current="page">Galeria e Ofertas</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <header class="cabecalho-pagina">
+      <h1>Galeria e ofertas de Natal</h1>
+      <p>Inspire-se com a magia do Natal e aproveite os descontos por tempo limitado.</p>
+    </header>
+
+    <section class="secao container" aria-labelledby="titulo-ofertas">
+      <div class="contagem revelar">
+        <h2 id="titulo-ofertas">🔥 Ofertas de Natal: 20% de desconto</h2>
+        <p>As ofertas terminam em:</p>
+        <div class="contagem-caixas" role="timer" aria-live="off">
+        <div class="contagem-caixa"><strong data-contagem="dias">00</strong><span>dias</span></div>
+        <div class="contagem-caixa"><strong data-contagem="horas">00</strong><span>horas</span></div>
+        <div class="contagem-caixa"><strong data-contagem="minutos">00</strong><span>minutos</span></div>
+        <div class="contagem-caixa"><strong data-contagem="segundos">00</strong><span>segundos</span></div>
+      </div>
+      </div>
+      <div class="grade-produtos grade-ofertas" id="lista-ofertas"></div>
+    </section>
+
+    <section class="secao container" aria-labelledby="titulo-galeria">
+      <div class="titulo-secao revelar">
+        <h2 id="titulo-galeria">📸 Galeria natalina</h2>
+        <p>Clique em uma imagem para ampliar. Use as setas do teclado para navegar.</p>
+      </div>
+      <div class="grade-galeria">
+        <button class="galeria-item revelar" aria-label="Ampliar: Árvore de Natal enfeitada"><img src="img/galeria/01-tree.svg" alt="Árvore de Natal enfeitada" width="1200" height="700" loading="lazy"><span>Árvore de Natal enfeitada</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Casinha nevada com luzes"><img src="img/galeria/02-house.svg" alt="Casinha nevada com luzes" width="1200" height="700" loading="lazy"><span>Casinha nevada com luzes</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Boneco de neve de cachecol"><img src="img/galeria/03-snowman.svg" alt="Boneco de neve de cachecol" width="1200" height="700" loading="lazy"><span>Boneco de neve de cachecol</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Trenó do Papai Noel"><img src="img/galeria/04-sleigh.svg" alt="Trenó do Papai Noel" width="1200" height="700" loading="lazy"><span>Trenó do Papai Noel</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Pilha de presentes embrulhados"><img src="img/galeria/05-gifts.svg" alt="Pilha de presentes embrulhados" width="1200" height="700" loading="lazy"><span>Pilha de presentes embrulhados</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Biscoitos de gengibre"><img src="img/galeria/06-cookies.svg" alt="Biscoitos de gengibre" width="1200" height="700" loading="lazy"><span>Biscoitos de gengibre</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Velas acesas"><img src="img/galeria/07-candles.svg" alt="Velas acesas" width="1200" height="700" loading="lazy"><span>Velas acesas</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Meia de Natal na lareira"><img src="img/galeria/08-stocking.svg" alt="Meia de Natal na lareira" width="1200" height="700" loading="lazy"><span>Meia de Natal na lareira</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Estrela dourada"><img src="img/galeria/09-star.svg" alt="Estrela dourada" width="1200" height="700" loading="lazy"><span>Estrela dourada</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Sino dourado de Natal"><img src="img/galeria/10-bell.svg" alt="Sino dourado de Natal" width="1200" height="700" loading="lazy"><span>Sino dourado de Natal</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Coroa de Natal"><img src="img/galeria/11-wreath.svg" alt="Coroa de Natal" width="1200" height="700" loading="lazy"><span>Coroa de Natal</span></button>
+        <button class="galeria-item revelar" aria-label="Ampliar: Pisca-pisca colorido"><img src="img/galeria/12-lights.svg" alt="Pisca-pisca colorido" width="1200" height="700" loading="lazy"><span>Pisca-pisca colorido</span></button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape-colunas">
+        <div>
+          <h3>Doce Estrela</h3>
+          <p>O sabor do Natal na sua mesa.</p>
+        </div>
+        <div>
+          <h3>Fale com a gente</h3>
+          <p>Rua das Estrelas, 25 — Vila Natal (endereço fictício)</p>
+          <p>(11) 4002-2512 · contato@doceestrela.example</p>
+        </div>
+        <div>
+          <h3>Navegue</h3>
+          <p><a href="produtos.html">Produtos</a> · <a href="galeria.html">Ofertas</a> · <a href="contato.html">Contato</a></p>
+        </div>
+      </div>
+      <p>&copy; 2026 Doce Estrela — loja fictícia criada para a AV2 de Desenvolvimento Web.</p>
+    </div>
+  </footer>
+
+  <!-- Carrinho de compras (painel lateral) -->
+  <div class="fundo-escuro" id="fundo" hidden></div>
+  <aside class="painel-carrinho" id="painel-carrinho" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="painel-topo">
+      <h2>🛒 Seu carrinho</h2>
+      <button id="fechar-carrinho" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <p class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio.<br>Escolha uns doces de Natal! 🎄</p>
+    <ul id="itens-carrinho"></ul>
+    <div class="painel-rodape">
+      <p><span>Total:</span> <strong id="total-carrinho">R$ 0,00</strong></p>
+      <button class="botao" id="finalizar-compra">Finalizar compra</button>
+      <button class="botao botao-contorno" id="limpar-carrinho">Esvaziar carrinho</button>
+    </div>
+  </aside>
+
+  <!-- Modal de detalhes do produto (preenchido pelo JavaScript) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-caixa">
+      <button class="modal-fechar" id="modal-fechar" aria-label="Fechar detalhes">✕</button>
+      <img id="modal-imagem" src="img/logo.svg" alt="" width="520" height="260">
+      <div class="modal-corpo">
+        <span class="etiqueta etiqueta-modal" id="modal-categoria"></span>
+        <h2 id="modal-titulo"></h2>
+        <p id="modal-descricao"></p>
+        <strong class="preco" id="modal-preco"></strong>
+        <button class="botao pulsar" id="modal-comprar" data-id="1">🎁 Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox da galeria -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+    <button class="lightbox-btn" id="lb-fechar" aria-label="Fechar imagem">✕</button>
+    <button class="lightbox-btn" id="lb-anterior" aria-label="Imagem anterior">‹</button>
+    <figure>
+      <img id="lb-imagem" src="img/logo.svg" alt="">
+      <figcaption id="lb-legenda"></figcaption>
+    </figure>
+    <button class="lightbox-btn" id="lb-proximo" aria-label="Próxima imagem">›</button>
+  </div>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+  <button id="topo" aria-label="Voltar ao topo">↑</button>
+
+  <!-- A ordem importa: produtos.js ANTES do script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

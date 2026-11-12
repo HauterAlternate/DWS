@@ -1,0 +1,40 @@
+LOJA: Doce Estrela - Confeitaria Natalina
+SEGMENTO: Confeitaria
+TURMA: 1TI_
+
+INTEGRANTES:
+ - Nome completo - nº
+ - Nome completo - nº
+ - Nome completo - nº
+
+LINKS:
+ Site (GitHub Pages): https://usuario.github.io/loja-natal-doce-estrela/
+ Repositório (GitHub): https://github.com/usuario/loja-natal-doce-estrela
+ Vídeo (YouTube): https://www.youtube.com/watch?v=...
+
+PÁGINAS:
+ index.html (Home) | produtos.html | sobre.html | galeria.html (Galeria e Ofertas) | contato.html
+
+RECURSOS DE JAVASCRIPT IMPLEMENTADOS (mínimo de 8) - arquivo js/script.js:
+ 1. Slideshow / carrossel - index.html
+ 2. Parallax (camadas com data-velocidade) - index.html
+ 3. Sons (música de fundo com botão + sino ao adicionar ao carrinho) - todas as páginas
+ 4. Cards dinâmicos (50 produtos gerados a partir de js/produtos.js) - produtos.html, index.html, galeria.html
+ 5. Filtro por categoria, busca por nome e ordenação por preço - produtos.html
+ 6. Carrinho de compras (localStorage, quantidade, total) - todas as páginas
+ 7. Contagem regressiva até o Natal - index.html, sobre.html, galeria.html
+ 8. Validação de formulário - contato.html
+ 9. Menu responsivo (hambúrguer) - todas as páginas
+ 10. Modal de detalhes do produto - index.html, produtos.html, galeria.html
+ 11. Lightbox da galeria - galeria.html
+ 12. Efeito de neve - todas as páginas
+ 13. Modo claro/escuro "Noite de Natal" (salvo no localStorage) - todas as páginas
+ 14. Animação ao rolar (IntersectionObserver) - várias páginas
+ 15. Botão "voltar ao topo" - todas as páginas
+
+CRÉDITOS (imagens, sons e ícones):
+ - Todas as imagens (produtos, banners, galeria, logotipo, avatares) são ilustrações em SVG
+   criadas especialmente para este projeto, sem direitos autorais de terceiros.
+ - Músicas e efeito de sino (audio/): sintetizados por código (melodia "Jingle Bells", domínio público).
+ - Fontes: Google Fonts - Mountains of Christmas e Poppins.
+ - Nenhuma biblioteca ou framework foi utilizado.

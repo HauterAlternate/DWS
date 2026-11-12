@@ -1,0 +1,79 @@
+/* =====================================================
+   css/responsivo.css — Media queries (mobile-first)
+   O estilo base (celular) está em style.css.
+   Aqui só ACRESCENTAMOS regras para telas maiores:
+     - Tablet:  a partir de 600px
+     - Desktop: a partir de 992px
+   ===================================================== */
+
+/* ---------- Tablet (a partir de 600px) ---------- */
+@media (min-width: 600px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; }
+
+  .banner-conteudo h1 { font-size: 4.6rem; }
+  .banner-conteudo .slogan { font-size: 1.3rem; }
+
+  .grade-produtos { grid-template-columns: repeat(2, 1fr); }
+  .grade-chamadas { grid-template-columns: repeat(2, 1fr); }
+  .grade-valores { grid-template-columns: repeat(2, 1fr); }
+  .equipe { grid-template-columns: repeat(2, 1fr); }
+  .filtros { grid-template-columns: 2fr 1fr 1fr; align-items: end; }
+
+  .grade-galeria { grid-template-columns: repeat(3, 1fr); }
+  .galeria-item img { height: 170px; }
+
+  .slide img { height: 380px; }
+  .slide-texto { padding: 3rem 2rem 1.8rem; }
+  .slide-texto h2 { font-size: 2rem; }
+
+  .btn-icone .texto-botao { display: inline; }
+
+  .rodape-colunas { flex-direction: row; justify-content: space-around; text-align: center; }
+}
+
+/* ---------- Desktop (a partir de 992px) ---------- */
+@media (min-width: 992px) {
+  .grade-produtos { grid-template-columns: repeat(4, 1fr); }
+  .grade-chamadas { grid-template-columns: repeat(3, 1fr); }
+  .grade-valores { grid-template-columns: repeat(3, 1fr); }
+  .equipe { grid-template-columns: repeat(3, 1fr); }
+  .grade-galeria { grid-template-columns: repeat(4, 1fr); }
+
+  .dois-blocos { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .contato-grade { grid-template-columns: 3fr 2fr; }
+
+  /* O menu vira uma linha e o botão hambúrguer some */
+  .cabecalho-linha { flex-wrap: nowrap; padding-block: 0.4rem; }
+  .menu {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+    gap: 0.4rem;
+    order: 2;
+  }
+  .menu a { padding: 0.5rem 0.8rem; }
+  .acoes { order: 3; }
+  .btn-menu { display: none; }
+  .marca { margin-right: 1rem; }
+
+  .banner { min-height: 88vh; }
+  .slide img { height: 460px; }
+
+  /* Linha do tempo centralizada no desktop */
+  .linha-tempo { padding-left: 0; }
+  .linha-tempo::before { left: 50%; margin-left: -2px; }
+  .linha-tempo li { width: calc(50% - 2rem); }
+  .linha-tempo li:nth-child(even) { margin-left: auto; }
+  .linha-tempo li::before { left: auto; right: -2.65rem; }
+  .linha-tempo li:nth-child(even)::before { right: auto; left: -2.65rem; }
+}
+
+/* Celulares bem pequenos (até 380px): ajustes finos */
+@media (max-width: 380px) {
+  .marca { font-size: 1.4rem; }
+  .marca img { width: 36px; height: 36px; }
+  .banner-conteudo h1 { font-size: 2.7rem; }
+  .contagem-caixa { min-width: 66px; }
+}

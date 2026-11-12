@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doce Estrela: confeitaria natalina com panetones, biscoitos, bolos, cestas e chocolates.">
+  <title>Doce Estrela | Contato</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body>
+  <!-- Neve caindo (flocos criados pelo JavaScript) -->
+  <div id="neve" aria-hidden="true"></div>
+
+  <header class="cabecalho">
+    <div class="luzes" aria-hidden="true"></div>
+    <div class="cabecalho-linha">
+      <a class="marca" href="index.html">
+        <img src="img/logo.svg" alt="Logotipo da Doce Estrela" width="44" height="44">
+        <span>Doce Estrela</span>
+      </a>
+
+      <div class="acoes">
+        <button class="btn-icone" id="btn-musica" aria-label="Tocar música de Natal" aria-pressed="false">🎵 <span class="texto-botao">Tocar música</span></button>
+        <button class="btn-icone" id="btn-tema" aria-label="Ativar modo Noite de Natal">🌙</button>
+        <button class="btn-icone" id="btn-carrinho" aria-label="Abrir carrinho de compras">🛒 <span id="qtd-carrinho">0</span></button>
+        <button class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html">Home</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html">Galeria e Ofertas</a>
+        <a href="contato.html" class="ativo" aria-current="page">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <header class="cabecalho-pagina">
+      <h1>Fale com a Doce Estrela</h1>
+      <p>Encomendas, dúvidas ou sugestões? Escreva para a gente!</p>
+    </header>
+
+    <section class="secao container" aria-label="Contato">
+      <div class="contato-grade">
+        <form class="formulario revelar" id="form-contato" novalidate>
+          <h2>Envie sua mensagem</h2>
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo">
+            <span class="erro" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="nome@exemplo.com">
+            <span class="erro" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto">
+              <option value="">Selecione...</option>
+              <option>Fazer uma encomenda</option>
+              <option>Dúvida sobre um produto</option>
+              <option>Elogio ou sugestão</option>
+              <option>Outro assunto</option>
+            </select>
+            <span class="erro" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Conte como podemos ajudar..."></textarea>
+            <span class="erro" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="botao pulsar">💌 Enviar mensagem</button>
+          <p id="mensagem-form" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="info-loja revelar" aria-labelledby="titulo-info">
+          <h2 id="titulo-info">Informações da loja</h2>
+          <ul>
+            <li>📍 Rua das Estrelas, 25 — Vila Natal (endereço fictício)</li>
+            <li>📞 (11) 4002-2512</li>
+            <li>✉️ contato@doceestrela.example</li>
+            <li>🕒 Seg a sáb, 9h às 19h · Dezembro: todos os dias até as 22h</li>
+          </ul>
+          <h3>Redes sociais</h3>
+          <div class="redes">
+            <a href="#" aria-label="Instagram da Doce Estrela (exemplo)">Instagram</a>
+            <a href="#" aria-label="Facebook da Doce Estrela (exemplo)">Facebook</a>
+            <a href="#" aria-label="WhatsApp da Doce Estrela (exemplo)">WhatsApp</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape-colunas">
+        <div>
+          <h3>Doce Estrela</h3>
+          <p>O sabor do Natal na sua mesa.</p>
+        </div>
+        <div>
+          <h3>Fale com a gente</h3>
+          <p>Rua das Estrelas, 25 — Vila Natal (endereço fictício)</p>
+          <p>(11) 4002-2512 · contato@doceestrela.example</p>
+        </div>
+        <div>
+          <h3>Navegue</h3>
+          <p><a href="produtos.html">Produtos</a> · <a href="galeria.html">Ofertas</a> · <a href="contato.html">Contato</a></p>
+        </div>
+      </div>
+      <p>&copy; 2026 Doce Estrela — loja fictícia criada para a AV2 de Desenvolvimento Web.</p>
+    </div>
+  </footer>
+
+  <!-- Carrinho de compras (painel lateral) -->
+  <div class="fundo-escuro" id="fundo" hidden></div>
+  <aside class="painel-carrinho" id="painel-carrinho" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="painel-topo">
+      <h2>🛒 Seu carrinho</h2>
+      <button id="fechar-carrinho" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <p class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio.<br>Escolha uns doces de Natal! 🎄</p>
+    <ul id="itens-carrinho"></ul>
+    <div class="painel-rodape">
+      <p><span>Total:</span> <strong id="total-carrinho">R$ 0,00</strong></p>
+      <button class="botao" id="finalizar-compra">Finalizar compra</button>
+      <button class="botao botao-contorno" id="limpar-carrinho">Esvaziar carrinho</button>
+    </div>
+  </aside>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+  <button id="topo" aria-label="Voltar ao topo">↑</button>
+
+  <!-- A ordem importa: produtos.js ANTES do script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1268 @@
+/* =====================================================
+   css/style.css — Doce Estrela | Confeitaria Natalina
+   Estilo base (pensado primeiro para o CELULAR).
+   As regras para telas maiores ficam em css/responsivo.css
+   ===================================================== */
+
+/* ---------- 1. Variáveis (identidade visual natalina) ---------- */
+:root {
+  /* Paleta */
+  --vermelho: #B3202A;
+  --vermelho-escuro: #8E1520;
+  --verde: #1F5D3A;
+  --dourado: #C9A227;
+  --neve: #FFFFFF;
+  --creme: #FBF6EA;
+  --noite: #12263F;
+
+  /* Cores que mudam no modo escuro "Noite de Natal" */
+  --fundo: var(--creme);
+  --texto: #2B2B2B;
+  --texto-suave: #5A5A5A;
+  --cartao: var(--neve);
+  --borda: #E8DCC6;
+
+  /* Fontes (Google Fonts) */
+  --fonte-titulo: "Mountains of Christmas", "Georgia", cursive;
+  --fonte-texto: "Poppins", "Segoe UI", sans-serif;
+
+  /* Espaçamentos e formas */
+  --espaco: 1rem;
+  --espaco-grande: 2.5rem;
+  --raio: 16px;
+  --sombra: 0 6px 18px rgba(18, 38, 63, 0.15);
+}
+
+/* Modo escuro: só trocamos as variáveis, o site inteiro muda! */
+[data-tema="escuro"] {
+  --fundo: #0B1630;
+  --texto: #EDEFF5;
+  --texto-suave: #B8C0D6;
+  --cartao: #16264A;
+  --borda: #2A3C66;
+  --sombra: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 2. Reset e base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.6;
+  transition: background 0.4s, color 0.4s;
+}
+
+img {
+  max-width: 100%;
+  height: auto; /* respeita a proporção mesmo com width/height no HTML */
+  display: block;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.15;
+  margin: 0 0 0.6rem;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.9rem; color: var(--vermelho); }
+h3 { font-size: 1.35rem; }
+
+[data-tema="escuro"] h2 { color: var(--dourado); }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 2px;
+}
+
+.container {
+  width: min(1200px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.secao {
+  padding: var(--espaco-grande) 0;
+}
+
+.titulo-secao {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.titulo-secao p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+.somente-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- 3. Botões ---------- */
+.botao,
+.btn-comprar,
+.btn-detalhes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.botao,
+.btn-comprar {
+  background: var(--vermelho);
+  color: var(--neve);
+}
+
+.botao:hover,
+.btn-comprar:hover {
+  background: var(--vermelho-escuro);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+}
+
+.botao-verde { background: var(--verde); }
+.botao-verde:hover { background: #164A2D; }
+
+.botao-contorno,
+.btn-detalhes {
+  background: transparent;
+  color: var(--verde);
+  border-color: var(--verde);
+}
+
+.botao-contorno:hover,
+.btn-detalhes:hover {
+  background: var(--verde);
+  color: var(--neve);
+}
+
+[data-tema="escuro"] .botao-contorno,
+[data-tema="escuro"] .btn-detalhes {
+  color: var(--dourado);
+  border-color: var(--dourado);
+}
+
+[data-tema="escuro"] .botao-contorno:hover,
+[data-tema="escuro"] .btn-detalhes:hover {
+  background: var(--dourado);
+  color: var(--noite);
+}
+
+/* Botão pulsando: chama a atenção para a ação principal */
+.pulsar {
+  animation: pulsar 2s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.7); }
+  50% { box-shadow: 0 0 0 14px rgba(201, 162, 39, 0); }
+}
+
+/* ---------- 4. Luzinhas de Natal piscando ---------- */
+.luzes {
+  position: relative;
+  height: 22px;
+  overflow: hidden;
+  background: var(--noite);
+}
+
+.luzes::before,
+.luzes::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* Cada pseudo-elemento desenha duas cores de lâmpadas que piscam em tempos diferentes */
+.luzes::before {
+  background:
+    radial-gradient(circle, #FF3B3B 0 5px, transparent 6px) 0 50% / 80px 22px repeat-x,
+    radial-gradient(circle, #3BD17F 0 5px, transparent 6px) 40px 50% / 80px 22px repeat-x;
+  animation: piscar 1.6s ease-in-out infinite;
+}
+
+.luzes::after {
+  background:
+    radial-gradient(circle, #FFD23B 0 5px, transparent 6px) 20px 50% / 80px 22px repeat-x,
+    radial-gradient(circle, #5AB0FF 0 5px, transparent 6px) 60px 50% / 80px 22px repeat-x;
+  animation: piscar 1.6s ease-in-out infinite 0.8s;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* ---------- 5. Cabeçalho e menu ---------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro));
+  color: var(--neve);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cabecalho-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--fonte-titulo);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--neve);
+  margin-right: auto;
+}
+
+.marca img {
+  width: 44px;
+  height: 44px;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-icone,
+.btn-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--neve);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 0.7rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-icone:hover,
+.btn-menu:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* No celular mostramos só o ícone da música; o texto aparece no desktop */
+.btn-icone .texto-botao {
+  display: none;
+  font-size: 0.85rem;
+}
+
+#qtd-carrinho {
+  background: var(--dourado);
+  color: var(--noite);
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-pulo {
+  animation: pulo 0.4s;
+}
+
+@keyframes pulo {
+  50% { transform: scale(1.25); }
+}
+
+/* Menu: escondido no celular, abre com a classe "aberto" (JavaScript) */
+.menu {
+  display: none;
+  width: 100%;
+  padding-bottom: 0.5rem;
+}
+
+.menu.aberto {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  position: relative;
+  display: block;
+  padding: 0.6rem 0.4rem;
+  text-decoration: none;
+  color: var(--neve);
+  font-weight: 600;
+}
+
+.menu a:hover {
+  color: var(--dourado);
+}
+
+/* Destaque para a página ativa: sublinhado dourado (pseudo-elemento) */
+.menu a.ativo {
+  color: var(--dourado);
+}
+
+.menu a.ativo::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: var(--dourado);
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+/* ---------- 6. Neve (flocos criados pelo JavaScript) ---------- */
+#neve {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 40;
+}
+
+.floco {
+  position: absolute;
+  top: -20px;
+  color: var(--neve);
+  text-shadow: 0 0 4px rgba(120, 160, 220, 0.8);
+  animation: cair linear infinite;
+  user-select: none;
+}
+
+@keyframes cair {
+  from { transform: translate3d(0, -10vh, 0) rotate(0deg); }
+  50% { transform: translate3d(25px, 55vh, 0) rotate(180deg); }
+  to { transform: translate3d(-15px, 110vh, 0) rotate(360deg); }
+}
+
+/* ---------- 7. Banner da Home com parallax ---------- */
+.banner {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--noite);
+  color: var(--neve);
+  text-align: center;
+}
+
+/* Camadas: o JavaScript move cada uma com velocidade diferente */
+.camada {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.camada-ceu { top: -15%; height: 135%; }
+.camada-montanhas { bottom: 0; height: 60%; object-position: bottom; }
+.camada-pinheiros { bottom: -2%; height: 42%; object-position: bottom; }
+
+.banner-conteudo {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 1rem 6rem;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+}
+
+.banner-conteudo h1 {
+  font-size: 3.2rem;
+  color: var(--neve);
+}
+
+.banner-conteudo .slogan {
+  font-size: 1.15rem;
+  margin: 0 auto 1.2rem;
+  max-width: 34rem;
+}
+
+.banner-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.contagem-mini {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 1rem;
+  background: rgba(201, 162, 39, 0.9);
+  color: var(--noite);
+  font-weight: 700;
+  border-radius: 999px;
+  text-shadow: none;
+}
+
+/* Faixa parallax feita só com CSS (background-attachment: fixed) */
+.faixa-parallax {
+  background-image: linear-gradient(rgba(18, 38, 63, 0.55), rgba(18, 38, 63, 0.55)), url("../img/banners/ceu.svg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: var(--neve);
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.faixa-parallax blockquote {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.9rem;
+  line-height: 1.3;
+}
+
+.faixa-parallax cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--fonte-texto);
+  font-size: 0.9rem;
+  color: var(--dourado);
+  font-style: normal;
+}
+
+/* ---------- 8. Slideshow ---------- */
+.slideshow {
+  position: relative;
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  background: var(--noite);
+}
+
+.slide { display: none; position: relative; }
+
+.slide.ativo {
+  display: block;
+  animation: aparecer 1s;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.slide-texto {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 1rem 1.6rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--neve);
+}
+
+.slide-texto h2 { color: var(--dourado); margin-bottom: 0.2rem; font-size: 1.6rem; }
+.slide-texto p { margin: 0 0 0.6rem; }
+
+.slide-botao {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--vermelho);
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.slide-botao:hover { background: var(--dourado); transform: translateY(-50%) scale(1.1); }
+#anterior { left: 0.6rem; }
+#proximo { right: 0.6rem; }
+
+.indicadores {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.4rem;
+  z-index: 3;
+}
+
+.indicadores button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--neve);
+  background: transparent;
+  cursor: pointer;
+}
+
+.indicadores button.ativo { background: var(--dourado); border-color: var(--dourado); }
+
+/* ---------- 9. Cards de produtos (Grid) ---------- */
+.grade-produtos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: entrada 0.5s ease-out both; /* ao aparecer, o card sobe suavemente */
+}
+
+@keyframes entrada {
+  from { opacity: 0; translate: 0 20px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* Só os cards de destaque "flutuam" de leve (cada um começa em um momento, atraso aleatório no JS) */
+#lista-destaques .card {
+  animation: flutuar 6s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.card-imagem {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.card:hover img { transform: scale(1.08); }
+
+.etiqueta {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: var(--verde);
+  color: var(--neve);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.etiqueta-oferta {
+  left: auto;
+  right: 0.6rem;
+  background: var(--vermelho);
+}
+
+.card-corpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+
+.card h3 { font-size: 1.3rem; margin: 0; color: var(--vermelho); }
+[data-tema="escuro"] .card h3 { color: var(--dourado); }
+.card p { margin: 0; font-size: 0.9rem; color: var(--texto-suave); flex: 1; }
+
+.preco { font-size: 1.25rem; font-weight: 700; color: var(--verde); }
+[data-tema="escuro"] .preco { color: #6FD39A; }
+.preco-antigo { font-size: 0.85rem; font-weight: 400; color: var(--texto-suave); text-decoration: line-through; margin-right: 0.4rem; }
+
+.card-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.card-botoes button { flex: 1; font-size: 0.85rem; padding: 0.55rem 0.7rem; }
+
+/* ---------- 10. Barra de filtros (página de produtos) ---------- */
+.filtros {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--sombra);
+}
+
+.filtros label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.filtros input,
+.filtros select,
+.formulario input,
+.formulario select,
+.formulario textarea {
+  width: 100%;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  padding: 0.65rem 0.8rem;
+  border: 2px solid var(--borda);
+  border-radius: 12px;
+  background: var(--fundo);
+  color: var(--texto);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filtros input:focus,
+.filtros select:focus,
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.25);
+}
+
+#contador {
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--verde);
+}
+
+[data-tema="escuro"] #contador { color: #6FD39A; }
+
+.vazio {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-size: 1.1rem;
+  background: var(--cartao);
+  border: 2px dashed var(--dourado);
+  border-radius: var(--raio);
+}
+
+.vazio span { display: block; font-size: 3rem; }
+
+.etiqueta-modal { position: static; display: inline-block; margin-bottom: 0.5rem; }
+.botao-claro { color: var(--neve); border-color: var(--neve); }
+.centro { text-align: center; margin-top: 1.5rem; }
+.grade-ofertas { margin-top: 2rem; }
+
+/* ---------- 11. Chamadas e cartões simples ---------- */
+.grade-chamadas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.chamada {
+  display: block;
+  text-decoration: none;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-top: 6px solid var(--vermelho);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+  box-shadow: var(--sombra);
+  transition: transform 0.3s;
+}
+
+.chamada:nth-child(even) { border-top-color: var(--verde); }
+.chamada:hover { transform: translateY(-6px); }
+.chamada .icone { font-size: 2.2rem; display: block; margin-bottom: 0.3rem; }
+.chamada p { margin: 0; color: var(--texto-suave); }
+
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.categorias a {
+  text-decoration: none;
+  background: var(--cartao);
+  border: 2px solid var(--dourado);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.categorias a:hover { background: var(--dourado); color: var(--noite); transform: scale(1.06); }
+
+/* ---------- 12. Sobre nós ---------- */
+.cabecalho-pagina {
+  background: linear-gradient(rgba(18, 38, 63, 0.75), rgba(18, 38, 63, 0.75)), url("../img/banners/ceu.svg") center / cover;
+  color: var(--neve);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.cabecalho-pagina h1 { color: var(--neve); font-size: 2.6rem; }
+.cabecalho-pagina p { margin: 0 auto; max-width: 36rem; }
+
+.dois-blocos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.dois-blocos img { border-radius: var(--raio); box-shadow: var(--sombra); width: 100%; }
+
+.grade-valores {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.valor {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+  text-align: center;
+  box-shadow: var(--sombra);
+}
+
+.valor .icone { font-size: 2.4rem; }
+.valor p { margin: 0; color: var(--texto-suave); }
+
+.equipe {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.membro {
+  text-align: center;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+  box-shadow: var(--sombra);
+}
+
+.membro img {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 0.6rem;
+  border-radius: 50%;
+  border: 4px solid var(--dourado);
+}
+
+.membro h3 { margin-bottom: 0; }
+.membro p { margin: 0; color: var(--texto-suave); }
+
+/* Linha do tempo */
+.linha-tempo {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.8rem;
+}
+
+.linha-tempo::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--dourado);
+  border-radius: 4px;
+}
+
+.linha-tempo li {
+  position: relative;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: var(--sombra);
+}
+
+.linha-tempo li::before {
+  content: "";
+  position: absolute;
+  left: -1.8rem;
+  top: 1.2rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--vermelho);
+  border: 4px solid var(--creme);
+}
+
+.linha-tempo strong { color: var(--vermelho); font-size: 1.1rem; }
+[data-tema="escuro"] .linha-tempo strong { color: var(--dourado); }
+.linha-tempo p { margin: 0.2rem 0 0; }
+
+/* ---------- 13. Contagem regressiva ---------- */
+.contagem {
+  background: linear-gradient(135deg, var(--verde), #0F3A22);
+  color: var(--neve);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.contagem h2 { color: var(--dourado); }
+
+.contagem-caixas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.contagem-caixa {
+  min-width: 78px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid var(--dourado);
+  border-radius: 14px;
+  padding: 0.6rem 0.8rem;
+}
+
+.contagem-caixa strong { display: block; font-size: 2rem; line-height: 1.1; font-family: var(--fonte-titulo); }
+.contagem-caixa span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ---------- 14. Galeria e lightbox ---------- */
+.grade-galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.galeria-item {
+  position: relative;
+  padding: 0;
+  border: 3px solid var(--neve);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--noite);
+  box-shadow: var(--sombra);
+  transition: transform 0.3s;
+}
+
+.galeria-item:hover { transform: scale(1.04) rotate(-1deg); z-index: 2; }
+.galeria-item img { width: 100%; height: 150px; object-fit: cover; }
+
+.galeria-item span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--neve);
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.galeria-item:hover span,
+.galeria-item:focus-visible span { opacity: 1; }
+
+.lightbox,
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(5, 10, 25, 0.88);
+}
+
+.lightbox.aberto,
+.modal.aberto {
+  display: flex;
+  animation: aparecer 0.3s;
+}
+
+.lightbox figure { margin: 0; max-width: 900px; text-align: center; color: var(--neve); }
+.lightbox img { max-height: 70vh; margin: 0 auto; border-radius: 12px; border: 4px solid var(--neve); }
+.lightbox figcaption { margin-top: 0.6rem; }
+
+.lightbox-btn {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  background: var(--neve);
+  color: var(--vermelho);
+  cursor: pointer;
+}
+
+.lightbox-btn:hover { background: var(--dourado); }
+#lb-fechar { top: 1rem; right: 1rem; }
+#lb-anterior { left: 0.8rem; top: 50%; }
+#lb-proximo { right: 0.8rem; top: 50%; }
+
+/* ---------- 15. Modal de detalhes do produto ---------- */
+.modal-caixa {
+  position: relative;
+  width: min(520px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--cartao);
+  border-radius: var(--raio);
+  border: 3px solid var(--dourado);
+  animation: subir 0.35s;
+}
+
+@keyframes subir {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.modal-caixa img { width: 100%; height: 260px; object-fit: cover; }
+.modal-corpo { padding: 1.2rem; }
+.modal-corpo h2 { margin-bottom: 0.2rem; }
+.modal-corpo .preco { display: block; margin: 0.6rem 0; font-size: 1.5rem; }
+
+.modal-fechar {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--neve);
+  color: var(--vermelho);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ---------- 16. Carrinho (painel lateral) ---------- */
+.fundo-escuro {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.fundo-escuro[hidden] { display: none; }
+
+.painel-carrinho {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 100%);
+  background: var(--cartao);
+  color: var(--texto);
+  border-left: 4px solid var(--dourado);
+  transform: translateX(105%);
+  transition: transform 0.4s;
+}
+
+.painel-carrinho.aberto { transform: none; }
+
+.painel-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  background: var(--verde);
+  color: var(--neve);
+}
+
+.painel-topo h2 { margin: 0; color: var(--neve); }
+
+.painel-topo button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#itens-carrinho {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
+#itens-carrinho li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+#itens-carrinho img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; }
+#itens-carrinho strong { display: block; font-size: 0.9rem; line-height: 1.3; }
+#itens-carrinho small { color: var(--texto-suave); }
+
+.quantidade {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.quantidade button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--verde);
+  background: transparent;
+  color: var(--verde);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quantidade button:hover { background: var(--verde); color: var(--neve); }
+.quantidade .remover { border-color: var(--vermelho); color: var(--vermelho); margin-left: 0.3rem; }
+.quantidade .remover:hover { background: var(--vermelho); color: var(--neve); }
+
+.carrinho-vazio { text-align: center; padding: 2rem 1rem; color: var(--texto-suave); }
+.carrinho-vazio[hidden] { display: none; }
+
+.painel-rodape {
+  padding: 1rem;
+  border-top: 2px solid var(--borda);
+  display: grid;
+  gap: 0.6rem;
+}
+
+.painel-rodape p { margin: 0; font-size: 1.15rem; display: flex; justify-content: space-between; }
+
+/* Aviso rápido (toast) */
+.aviso {
+  position: fixed;
+  left: 50%;
+  top: 5.5rem;
+  z-index: 120;
+  max-width: 90vw;
+  text-align: center;
+  transform: translate(-50%, -300%);
+  background: var(--verde);
+  color: var(--neve);
+  padding: 0.8rem 1.4rem;
+  border-radius: 24px;
+  box-shadow: var(--sombra);
+  transition: transform 0.4s;
+}
+
+.aviso.visivel { transform: translate(-50%, 0); }
+
+/* ---------- 17. Formulário de contato ---------- */
+.contato-grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.formulario {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+  box-shadow: var(--sombra);
+}
+
+.campo { margin-bottom: 1rem; }
+.campo label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+.formulario textarea { min-height: 130px; resize: vertical; }
+
+.campo.invalido input,
+.campo.invalido select,
+.campo.invalido textarea { border-color: var(--vermelho); }
+
+.erro {
+  display: block;
+  min-height: 1.2em;
+  margin-top: 0.2rem;
+  color: var(--vermelho);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+[data-tema="escuro"] .erro { color: #FF8A93; }
+
+#mensagem-form {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+#mensagem-form:empty { display: none; }
+#mensagem-form.sucesso { background: #DDF3E6; color: #11512E; border: 1px solid #6FD39A; }
+#mensagem-form.falha { background: #FBE3E4; color: #8E1520; border: 1px solid #E89AA0; }
+
+.info-loja {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-left: 6px solid var(--verde);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+  box-shadow: var(--sombra);
+}
+
+.info-loja ul { list-style: none; padding: 0; margin: 0 0 1rem; }
+.info-loja li { padding: 0.4rem 0; border-bottom: 1px dashed var(--borda); }
+
+.redes { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.redes a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--noite);
+  color: var(--neve);
+  transition: background 0.2s;
+}
+.redes a:hover { background: var(--vermelho); }
+
+/* ---------- 18. Animação ao rolar e botão "topo" ---------- */
+.revelar {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+#topo {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--dourado);
+  color: var(--noite);
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s;
+}
+
+#topo:hover { transform: translateY(-4px); }
+
+/* ---------- 19. Rodapé ---------- */
+.rodape {
+  background: var(--noite);
+  color: var(--neve);
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 5px solid var(--dourado);
+}
+
+.rodape-colunas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.rodape h3 { color: var(--dourado); font-size: 1.3rem; }
+.rodape p { margin: 0.2rem 0; font-size: 0.88rem; }
+.rodape a { color: var(--dourado); }
+.rodape .creditos { color: #B8C0D6; font-size: 0.78rem; margin-top: 1rem; }
+
+/* Quem prefere menos movimento: desligamos as animações */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  #neve { display: none; }
+}

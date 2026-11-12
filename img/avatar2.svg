@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs><clipPath id="c"><circle cx="100" cy="100" r="100"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="200" height="200" fill="#12263F"/>
+    <circle cx="40" cy="40" r="3" fill="#fff"/><circle cx="160" cy="30" r="2.5" fill="#fff"/>
+    <circle cx="170" cy="85" r="2" fill="#fff"/><circle cx="25" cy="95" r="2" fill="#fff"/>
+    <path d="M20 210 Q20 140 100 140 Q180 140 180 210 Z" fill="#B3202A"/>
+    <path d="M85 140 L100 160 L115 140 Z" fill="#FBF6EA"/>
+    <circle cx="100" cy="95" r="34" fill="#F2C9A0"/>
+    <circle cx="88" cy="95" r="3.5" fill="#2B2B2B"/><circle cx="112" cy="95" r="3.5" fill="#2B2B2B"/>
+    <path d="M88 109 Q100 119 112 109" stroke="#8E1520" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M64 80 Q100 20 136 80 Z" fill="#B3202A"/>
+    <rect x="62" y="74" width="76" height="16" rx="8" fill="#FBF6EA"/>
+    <path d="M96 38 Q138 34 142 66" stroke="#B3202A" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <circle cx="142" cy="68" r="9" fill="#FBF6EA"/>
+  </g>
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#C9A227" stroke-width="6"/>
+</svg>
